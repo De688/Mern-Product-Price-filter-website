@@ -12,14 +12,14 @@ function NavbarTop() {
     <div className="w-full h-[100px] flex justify-around items-center">
       <div className=" text-3xl font-bold text-[#8d3afa]">MernPrice</div>
       <div className=" w-[600px] md:w-[500px] text-4xl md:flex justify-center items-center hidden ">
-        <form className="w-[600px] md:w-[500px] h-10   border-2 flex justify-center items-center border-[#8d3afab4] rounded-md">
+        <form className="w-[600px] md:w-[500px] h-10   border-2 flex justify-center items-center  border-[#8d3afabb] rounded-full">
           <input
             type="text"
             placeholder="Enter text"
-            className="w-full h-full text-sm bg-[#8d3afa2f] outline-none pl-6 border-0 rounded-l-md"
+            className="w-full h-full text-sm bg-[#8d3afa21] outline-none pl-6 border-0 rounded-l-full"
           />
           <button type="submit">
-            <BiSearch className="text-[#8d3afa] text- p-2" />
+            <BiSearch className="text-[#8d3afa] p-2" />
           </button>
         </form>
       </div>

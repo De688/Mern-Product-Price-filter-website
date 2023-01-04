@@ -6,10 +6,11 @@ import { MdOutlinePerson } from "react-icons/md";
 function SearchBarMobo() {
   return (
     <div className="text-4xl flex flex-col  justify-center items-center md:hidden ">
-      <form className="w-[90%] h-10  border-2 border-[#8d3afab4] flex justify-center items-center border-gray-700 rounded-md">
+      <form className="w-[90%] h-10  border-2 border-[#8d3afa63] flex justify-center items-center rounded-full">
         <input
           type="text"
-          className="w-full bg-[#8d3afa2f] h-full bg-slate-200 border-0 rounded-l-md"
+          placeholder="Search product"
+          className="w-full pl-4 placeholder:text-sm text-sm flex justify-center items-center bg-[#8d3afa2f] h-full bg-slate-200 border-0 rounded-l-full focus:outline-none"
         />
         <button type="submit" className="text-[#8d3afa] text-xl p-2">
           <BiSearch />
