@@ -14,6 +14,9 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  ProfileImage: {
+    type: String,
+  },
   date: {
     type: Date,
     default: new Date(),

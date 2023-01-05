@@ -5,7 +5,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 function HomeCenter() {
   return (
-    <div className="w-full h-full rounded-xl overflow-hidden">
+    <div className="w-full h-full rounded-xl ">
       <Splide
         options={{
           type: "loop",
@@ -21,7 +21,7 @@ function HomeCenter() {
               <img
                 src={Images.image1}
                 alt="heroimage"
-                className="w-full h-full rounded-md overflow-hidden"
+                className="w-full rounded-md "
               />
             </SplideSlide>
           );

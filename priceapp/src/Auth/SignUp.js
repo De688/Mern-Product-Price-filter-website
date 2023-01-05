@@ -1,15 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { register, reset } from "../Redux/AuthSlice.js";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loading from "../Loading/Loading.js";
 
 function SignUp() {
   const navigate = useNavigate();
-  const [user, setuser] = useState({
+
+  const { user, isError, isLoading, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+  const [User, setuser] = useState({
     name: "",
     email: "",
     password: "",
   });
 
-  const { name, email, password } = user;
+  const { name, email, password } = User;
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess || user) {
+      toast.success("user registered");
+      navigate("/");
+    }
+    dispatch(reset);
+  }, [user, isLoading, isError, isSuccess, message, navigate, dispatch]);
 
   const onchange = (e) => {
     setuser((prevState) => ({
@@ -25,7 +46,7 @@ function SignUp() {
       email: email,
       password: password,
     };
-    console.log(newUser);
+    dispatch(register(newUser));
   };
   const onSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +64,7 @@ function SignUp() {
           <input
             type="name"
             name="name"
-            value={user.name}
+            value={User.name}
             onChange={onchange}
             placeholder="Enter your name"
             className="w-[90%] h-[50px] focus:outline-[#9954c7] bg-[#7a44ad21] rounded-md pl-8"
@@ -51,7 +72,7 @@ function SignUp() {
           <input
             type="email"
             name="email"
-            value={user.email}
+            value={User.email}
             onChange={onchange}
             placeholder="Enter your email"
             className="w-[90%] h-[50px] focus:outline-[#9954c7] bg-[#7a44ad21] rounded-md pl-8"
@@ -59,17 +80,18 @@ function SignUp() {
           <input
             type="password"
             name="password"
-            value={user.password}
+            value={User.password}
             onChange={onchange}
             placeholder="Enter your Password"
             className="w-[90%] h-[50px] rounded-md focus:outline-[#9954c7] bg-[#8c44ad21] pl-8"
           />
+
           <button
             type="submit"
             onClick={CreateUser}
-            className="w-[90%] h-10 rounded-md bg-[#320a44] hover:bg-[#ba52eb] text-white"
+            className="w-[90%] h-10 flex justify-center items-center rounded-md bg-[#320a44] hover:bg-[#ba52eb] text-white"
           >
-            Register
+            {isLoading ? <Loading /> : ""}Register
           </button>
 
           <div className="w-[90%] mt-2 border-t border-[#4b336649] flex justify-center items-center">

@@ -2,12 +2,29 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const multer = require("multer");
 
 require("dotenv").config();
 const userRoute = require("./routes/userRoute.js");
 const postRoute = require("./routes/postRoute.js");
 
 const port = 5000;
+app = express();
+
+// multer image upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage: storage });
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  res.status(200).json("File has been uploaded!");
+});
 
 // connect  database url
 mongoose.set("strictQuery", false);
@@ -28,8 +45,6 @@ mongoose.connect(
 );
 
 // starting the server
-
-app = express();
 
 app.use(cors());
 app.use(express.json());

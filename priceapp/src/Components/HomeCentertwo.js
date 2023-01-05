@@ -4,7 +4,7 @@ import Homeproductimages from "../Data2";
 function HomeCenter2() {
   return (
     <div className="w-full h-[90px] bg-white rounded-md flex   justify-center flex-wrap mt-10">
-      <div className="w-full h-14  rounded-md flex  flex-wrap  text-[#360575c4] text-3xl font-bold">
+      <div className="w-full min-h-10 md:min-h-12 lg:h-14 mb-10  rounded-md flex font-sans   flex-wrap  text-[#360575c4] text-3xl font-bold">
         Most popular lowest priced sellers
       </div>
       <div className="w-full flex gap-2 flex-wrap justify-around text-xl bg-white">
