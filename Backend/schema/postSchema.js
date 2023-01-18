@@ -13,9 +13,9 @@ const postSchema = new mongoose.Schema({
     default: 0,
   },
   product_image: {
-    type: [String],
+    type: String,
   },
-  amount: {
+  price: {
     type: Number,
     default: 0,
   },
@@ -27,6 +27,14 @@ const postSchema = new mongoose.Schema({
   },
   Product_description: {
     type: String,
+  },
+  rating: {
+    type: Number,
+    default: 0,
+  },
+  averageRating: {
+    type: Number,
+    default: 0,
   },
 
   senderId: {

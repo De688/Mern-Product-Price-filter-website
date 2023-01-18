@@ -3,6 +3,9 @@ const usersModel = require("../schema/userSchema.js");
 const Joi = require("@hapi/joi");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 //validation using joi
 // joi schema
@@ -29,6 +32,7 @@ router.post("/register", async (req, res) => {
     name: name,
     email: email,
     password: hashedpassword,
+    ProfileImage: "",
   });
 
   //check if user arleady exist before saving the user
@@ -42,12 +46,14 @@ router.post("/register", async (req, res) => {
     res.status(201).json({
       id: newUser._id,
       name: newUser.name,
+      email: newUser.email,
       password: newUser.password,
+      ProfileImage: newUser.ProfileImage,
       token: generateToken(newUser._id),
       created_at: newUser.date,
     });
   } catch (error) {
-    res.status(501).send("user not registered");
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -61,7 +67,7 @@ const loginSchema = Joi.object({
 
 router.post("/login", async (req, res) => {
   const { error } = loginSchema.validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(401).send(error.details[0].message);
 
   //check if user exist
   const { email, password } = req.body;
@@ -71,14 +77,18 @@ router.post("/login", async (req, res) => {
   //match two password
   const validuser = await bcrypt.compare(password, userExist.password);
   if (!validuser) return res.status(401).send("wrong password");
-
-  //return user info
-  res.status(200).json({
-    id: userExist._id,
-    name: userExist.name,
-    token: generateToken(userExist._id),
-    created_at: userExist.date,
-  });
+  try {
+    res.status(200).json({
+      id: userExist._id,
+      name: userExist.name,
+      email: userExist.email,
+      ProfileImage: userExist.ProfileImage,
+      token: generateToken(userExist._id),
+      created_at: userExist.date,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 //update user login data
@@ -88,17 +98,36 @@ const updateuserschema = Joi.object({
   name: Joi.string().min(4).required(),
   email: Joi.string().min(6).required().email(),
   password: Joi.string().required(),
+  ProfileImage: Joi.string(),
 });
 
-router.put("/updateuserdata/:id", async (req, res) => {
+router.put("/updateuserdata/:id", upload.single("image"), async (req, res) => {
   const { error } = updateuserschema.validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   try {
-    updateduser = await usersModel.findByIdAndUpdate(req.params.id, req.body);
-    res.status(200).json(updateduser);
-  } catch (error) {
-    res.status(400).send("request failed!");
+    let userData = req.body;
+    // Hash the user's new password
+    if (userData.password) {
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(userData.password, salt);
+      userData = { ...userData, password: hashedPassword };
+    }
+    // Update the user with the new data
+    const user = await usersModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: userData },
+      { new: true }
+    );
+
+    // Save the updated user
+    await user.save();
+
+    // Send a success response to the client
+    res.status(201).json({ user });
+  } catch (err) {
+    // Handle any errors that occurred during the update process
+    res.status(500).json({ error: err.message });
   }
 });
 

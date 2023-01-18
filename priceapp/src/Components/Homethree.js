@@ -7,7 +7,7 @@ function Homethree() {
   const navigate = useNavigate();
 
   return (
-    <div className="hidden  w-[18%] h-[450px] overflow-hidden bg-white rounded-t-xl lg:flex flex-col justify-start items-center">
+    <div className="  w-[18%] h-[450px] overflow-hidden bg-white rounded-t-xl  flex-col justify-start items-center">
       <div className="w-full h-[100px] ">
         <img src={ProfileBg} alt="myimage" className="w-full h-[100px]" />
       </div>

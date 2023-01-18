@@ -1,42 +1,11 @@
 const router = require("express").Router();
 const postModel = require("../schema/postSchema.js");
-const usersModel = require("../schema/userSchema.js");
+
 const verified = require("../verify_user/verify.js");
 
 //posting product info
 
-router.post("/createProduct", async (req, res) => {
-  const {
-    product_name,
-    product_model,
-    product_price,
-    product_image,
-    amount,
-    location,
-    phone_number,
-    Product_description,
-    senderId,
-  } = req.body;
 
-  const newProduct = new postModel({
-    product_name,
-    product_model,
-    product_price,
-    product_image,
-    amount,
-    location,
-    phone_number,
-    Product_description,
-    senderId,
-  });
-
-  try {
-    await newProduct.save();
-    res.status(200).send(newProduct);
-  } catch (error) {
-    res.status(401).send(error);
-  }
-});
 
 //read all products info from the database
 

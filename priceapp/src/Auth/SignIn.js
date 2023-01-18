@@ -17,17 +17,19 @@ function SignIn() {
     password: "",
   });
 
+  const { email, password } = User;
+
   const onChange = (e) => {
     e.preventDefault();
     setUser((prevState) => ({
       ...prevState,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     }));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  const { email, password } = User;
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -42,10 +44,12 @@ function SignIn() {
   //function to dispatch userdata
   const dispatchuserdata = (e) => {
     e.preventDefault();
+
     const newUserdata = {
       email: email,
       password: password,
     };
+
     dispatch(login(newUserdata));
   };
 

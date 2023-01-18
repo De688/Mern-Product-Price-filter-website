@@ -5,7 +5,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 function HomeCenter() {
   return (
-    <div className="w-full h-full rounded-xl ">
+    <div className="w-full lg:max-h-full shadow-xl rounded-xl  ">
       <Splide
         options={{
           type: "loop",

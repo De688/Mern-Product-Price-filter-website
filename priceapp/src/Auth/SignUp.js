@@ -39,8 +39,8 @@ function SignUp() {
     }));
   };
 
-  const CreateUser = (e) => {
-    e.preventDefault();
+  const CreateUser = () => {
+    
     const newUser = {
       name: name,
       email: email,

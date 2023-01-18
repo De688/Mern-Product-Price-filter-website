@@ -5,7 +5,7 @@ import SearchBarMobo from "../Components/SearchBarMobo";
 
 function Navbar() {
   return (
-    <div className="w-full min-h-20 bg-[#ffffff] flex flex-col">
+    <div className="w-full min-h-20 bg-[#ffffff] flex flex-col shadow-md">
       <NavbarSignup />
       <NavbarTop />
       <SearchBarMobo />
