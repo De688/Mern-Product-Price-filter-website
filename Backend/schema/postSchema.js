@@ -8,17 +8,15 @@ const postSchema = new mongoose.Schema({
   product_model: {
     type: String,
   },
-  product_price: {
+  price: {
     type: Number,
-    default: 0,
+    required: true,
   },
+
   product_image: {
     type: String,
   },
-  price: {
-    type: Number,
-    default: 0,
-  },
+
   location: {
     type: String,
   },
@@ -48,3 +46,6 @@ const postSchema = new mongoose.Schema({
 
 const postModel = mongoose.model("posts", postSchema);
 module.exports = postModel;
+
+
+

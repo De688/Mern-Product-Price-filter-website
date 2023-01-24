@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../Redux/AddToCartSlice";
+import { updateCart } from "../Redux/AddToCartSlice";
 import { BsCartCheckFill } from "react-icons/bs";
 import { FaTimesCircle } from "react-icons/fa";
 import Loading from "../Loading/Loading";
 
-function Cart({ productId }) {
+function Cart({ productId, price }) {
+  
+
   const { user } = useSelector((state) => state.auth);
   const { items, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.cart
   );
-
+ 
+  const [quantity, setQuantity] = useState(1);
   const [removeSuceessAlam, setremoveSuccessAlam] = useState(false);
   const [removeErrorAlam, setremoveErrorAlam] = useState(false);
   const userID = user.id;
@@ -34,7 +37,15 @@ function Cart({ productId }) {
 
   const handleAddToCart = () => {
     if (user) {
-      dispatch(addToCart({ userID, productId }));
+      dispatch(
+        updateCart({
+          userId: userID,
+          productId: productId,
+          price,
+          userId: userID,
+          quantity,
+        })
+      );
     }
   };
 
@@ -42,7 +53,7 @@ function Cart({ productId }) {
     <>
       <button
         onClick={handleAddToCart}
-        className="w-[200px] h-[40px] shadow-xl bg-purple-900 shadow-xl flex justify-center items-center hover:bg-purple-800 text-white"
+        className="w-[200px] h-[40px] bg-purple-900 shadow-xl flex justify-center items-center hover:bg-purple-800 text-white"
       >
         {isLoading ? <Loading /> : null}
         Add to Cart

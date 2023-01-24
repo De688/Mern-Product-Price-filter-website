@@ -10,6 +10,8 @@ import ProfileUpdate from "./Auth/ProfileUpdate";
 import SingleProduct from "./Cart/SingleProduct";
 import Post from "./Components/Post";
 import Postdetails from "./Components/Postdetail";
+import Cart from "./Components/Cart";
+import AllCartData from "./Components/AllCartData";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
           <Route path="/addtocart" element={<SingleProduct />} />
           <Route path="/productdetail/:id" element={<Postdetails />} />
           <Route path="/Post" element={<Post />} />
+          <Route path="/cartdata" element={<AllCartData />} />
         </Routes>
         <ToastContainer
           position="top-right"

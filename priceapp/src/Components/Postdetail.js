@@ -13,6 +13,7 @@ function Postdetails() {
   const PublicFilder = "http://localhost:5000/images/";
 
   const { user } = useSelector((state) => state.auth);
+  const localstorage = JSON.parse(localStorage.getItem("user"));
 
   const dispatch = useDispatch();
   const params = useParams();
@@ -79,7 +80,7 @@ function Postdetails() {
             alt="product image"
           />
         </div>
-        <div className="w-[95%] md:w-[50%] min-h-full pl-8 pt-6 mb-10 justify-around">
+        <div className="w-[95%] md:w-[50%]  min-h-full pl-8 pt-6 mb-10 justify-around">
           <p className="text-2xl font-bold text-purple-900">
             {singleproduct?.product_name}
           </p>
@@ -89,7 +90,7 @@ function Postdetails() {
           </p>
           <div className="flex flex-col mt-4">
             <p className="font-bold text-purple-400 mr-2">Description</p>
-            <p className="text-xl text-purple-900">
+            <p className="text-sm text-purple-900">
               {singleproduct?.Product_description}
             </p>
           </div>
@@ -109,7 +110,7 @@ function Postdetails() {
           </p>
           <p className="text-md font-bold pt-2 text-purple-900">
             <span className="font-bold">Price:</span> TSH {""}
-            {singleproduct?.product_price}
+            {singleproduct?.price}
           </p>
           <div>
             <div className="flex  items-center">
@@ -140,9 +141,9 @@ function Postdetails() {
             )}
             <div>Average rating: {averageRatings}</div>
           </div>
-          {user ? (
+          {localstorage ? (
             <div className="mt-10 ">
-              <Cart productId={params.id} />
+              <Cart productId={params.id} price={singleproduct?.price} />
             </div>
           ) : (
             <div className="mt-10 ">

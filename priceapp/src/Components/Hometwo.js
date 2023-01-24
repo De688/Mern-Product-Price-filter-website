@@ -4,7 +4,7 @@ import HomeCenter2 from "../Components/HomeCentertwo";
 
 function Hometwo() {
   return (
-    <div className=" md:w-[78%]  lg:w-[78%] w-[90%] h-[250px] sm:h-[400px] flex flex-col justify-center ">
+    <div className=" md:w-[75%]  lg:w-[75%] w-[90%] h-[250px] sm:h-[400px] flex flex-col ">
       <HomeCenter />
       <HomeCenter2 />
     </div>

@@ -8,6 +8,7 @@ export const postProduct = createAsyncThunk(
       `http://localhost:5000/api/products/addProduct`,
       productData
     );
+
     return response.data;
   }
 );

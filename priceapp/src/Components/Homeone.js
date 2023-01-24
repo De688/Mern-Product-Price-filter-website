@@ -8,7 +8,7 @@ import { MdElectricalServices } from "react-icons/md";
 function Homeone() {
   return (
     <>
-      <div className="hidden md:flex flex-col justify-start shadow-xl bg-[#fdfdfd] w-[20%] min-h-full rounded-t-xl">
+      <div className="hidden md:flex flex-col justify-start shadow-xl bg-[#fdfdfd] w-[19%] md:w-[20%] min-h-full rounded-t-xl">
         <div className="w-full cursor-pointer text-[#8d3afa] border-b-2 text-xl font-bold border-[#bebebe60] h-14 flex justify-center items-center">
           <BiCategoryAlt />
           <p className="pl-2 text-[#8d3afa]">Categiries</p>
@@ -46,7 +46,7 @@ function Homeone() {
           Electronic
         </div>
       </div>
-      <div className="md:hidden w-[95%] min-h-[300px] flex flex-wrap justify-center items-start">
+      <div className="md:hidden w-[95%] min-h-[300px] sm:h-[400px] mt-8 flex flex-wrap justify-center items-center">
         <FaMobileAlt className="mr-4 text-[100px] sm:text-[110px] cursor-pointer hover:bg-[#633e945e] bg-[#4a1f835e] text-[#4a1f83] rounded-xl p-6" />
         <MdOutlineChair className="mr-4 text-[100px] sm:text-[110px] cursor-pointer hover:bg-[#633e945e] bg-[#4a1f835e] text-[#4a1f83] rounded-xl p-6" />
         <TbShirt className="mr-4 text-[100px] sm:text-[110px] cursor-pointer hover:bg-[#633e945e] bg-[#4a1f835e] text-[#4a1f83] rounded-xl p-6" />

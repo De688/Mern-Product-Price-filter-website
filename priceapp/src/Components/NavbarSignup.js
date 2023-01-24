@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../Redux/AuthSlice";
 import { useNavigate } from "react-router";
 import { MdAccountCircle } from "react-icons/md";
+import Profileimg from "../images/profile.webp";
 
 function NavbarSignup() {
   const PublicFilder = "http://localhost:5000/images/";
@@ -21,7 +22,7 @@ function NavbarSignup() {
 
   const logmeout = () => {
     setlogout(true);
-
+    navigate("/");
     dispatch(logout());
   };
   useEffect(() => {
@@ -42,11 +43,19 @@ function NavbarSignup() {
       {localstorage ? (
         <div className="text-[16px] h-[50px] px-4 flex justify-center items-center border-[#b6b8b777] border-l-2  cursor-pointer">
           <div className="w-[30px] h-[30px] bg-photo rounded-full  mr-2">
-            <img
-              className="w-[30px] h-[30px] rounded-full"
-              src={PublicFilder + Localstorage?.ProfileImage}
-              alt=""
-            />
+            {Localstorage?.ProfileImage ? (
+              <img
+                className="w-[30px] h-[30px] rounded-full"
+                src={PublicFilder + Localstorage?.ProfileImage}
+                alt=""
+              />
+            ) : (
+              <img
+                className="w-[30px] h-[30px] rounded-full"
+                src={Profileimg}
+                alt=""
+              />
+            )}
           </div>
           <p className="font-bold text-white">{Localstorage?.name}</p>
         </div>

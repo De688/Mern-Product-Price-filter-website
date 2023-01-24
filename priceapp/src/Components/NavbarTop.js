@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 import { BiSearch } from "react-icons/bi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiLogin } from "react-icons/ci";
@@ -7,26 +8,42 @@ import { FaTimes } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdManageAccounts } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
-
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchCart } from "../Redux/AddToCartSlice";
 
 function NavbarTop() {
-  const [User, setUser] = useState(null);
-  const [locastore, setlocastore] = useState(false);
-  const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
   const localstorage = JSON.parse(localStorage.getItem("user"));
+  const cartItems = useSelector((state) => state.cart.items);
+  const { items, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.cart
+  );
+  const { user } = useSelector((state) => state.auth);
+  const userId = user?.id;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [CartNumber, setCartNumber] = useState(0);
 
   useEffect(() => {
-    if (localstorage) {
-      setlocastore(true);
-    }
-    const getuser = () => {
-      const localData = JSON.parse(localStorage.getItem("user"));
-      setUser(localData);
-    };
+    dispatch(fetchCart(userId));
   }, []);
+
+  useEffect(() => {
+    // if (userId && (!cartItems || cartItems.length === 0)) {
+
+    // }
+    const cartnumber = () => {
+      if (cartItems.length > 0) {
+        setCartNumber(cartItems.length);
+      }
+    };
+    cartnumber();
+  }, [cartItems]);
+
+  const GoToCart = () => {
+    navigate("/cartdata");
+  };
 
   return (
     <div className="w-full h-[100px] flex justify-around items-center">
@@ -43,8 +60,18 @@ function NavbarTop() {
           </button>
         </form>
       </div>
-      <div className="w-10 h-10 flex justify-center items-center text-[#8d3afa] cursor-pointer text-2xl rounded-full hover:bg-[#8d3afa3f] transition-all duration-200">
+      <div
+        onClick={GoToCart}
+        className="w-10 h-10 flex relative justify-center items-center text-[#8d3afa] cursor-pointer text-2xl rounded-full hover:bg-[#8d3afa3f] transition-all duration-200"
+      >
         <FiShoppingCart />
+        {CartNumber ? (
+          <span className="absolute w-4 h-4 ml-4 mb-4 bg-red-500 rounded-full text-white text-[10px] flex justify-center items-center">
+            {CartNumber}
+          </span>
+        ) : (
+          ""
+        )}
       </div>
       {localstorage ? (
         <Link

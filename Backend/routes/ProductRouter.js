@@ -4,13 +4,13 @@ const postModel = require("../schema/postSchema.js");
 const verified = require("../verify_user/verify.js");
 
 router.post("/addProduct", async (req, res) => {
+ 
   try {
     const newProduct = new postModel({
       product_name: req.body.product_name,
       product_model: req.body.product_model,
-      product_price: req.body.product_price,
+      price: req.body.product_price,
       product_image: req.body.product_image,
-      price: req.body.price,
       location: req.body.location,
       phone_number: req.body.phone_number,
       Product_description: req.body.Product_description,
@@ -66,8 +66,6 @@ router.patch("/:id", async (req, res) => {
     });
     const updatedProductWithAvgRating = await postModel.findById(req.params.id);
     res.status(200).json(updatedProductWithAvgRating);
-    // res.status(200).json(updatedProduct);
-    console.log(updatedProductWithAvgRating);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

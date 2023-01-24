@@ -45,7 +45,7 @@ function HomeCenter2() {
 
   return (
     <div className="w-full h-[90px] bg-transparent rounded-md flex  justify-center flex-wrap mt-10">
-      <div className="w-full h-[100px]  bg-white pl-8 mb-8 rounded-xl flex font-sans items-center   text-[#200346c4] text-3xl font-bold">
+      <div className="w-full h-[100px]  bg-white pl-8 mb-8 rounded-sm flex font-sans items-center   text-[#200346c4] text-3xl font-bold">
         Most popular lowest priced sellers
       </div>
       <div className="w-full flex gap-2 flex-wrap  justify-around text-xl bg-transparent">
@@ -57,20 +57,20 @@ function HomeCenter2() {
                 navigate(`/productdetail/${product._id}`);
               }}
               key={product._id}
-              className="w-[95%] h-[200px] md:w-[400px] md:h-[200px] shadow-md rounded-xl hover:shadow-2xl  flex justify-around items-start hover:border-2 border-purple-400  items-center bg-white "
+              className="w-[95%] h-[200px] md:w-[350px] md:h-[200px] shadow-md rounded-xl hover:shadow-2xl  flex justify-around items-start hover:border-2 border-purple-400  items-center bg-white "
             >
               <img
                 src={PublicFilder + product.product_image}
                 alt="prodimage"
                 className="w-[190px]  h-[190px] flex flex-wrap border-[#546757] rounded-md "
               />
-              <div className="w-[190px] h-full   flex flex-col justify-around ">
+              <div className="w-[190px] h-full pl-2  flex flex-col justify-around ">
                 <div className="w-full flex flex-col font-bold  justify-between text-[16px] h-6">
                   <p>{product.product_name}</p>
                   <p>lowest</p>
                 </div>
 
-                <div className="w-full flex items-center justify-between text-[16px] h-6">
+                <div className="w-full flex items-center mt-2 pr-2 text-[16px] h-6">
                   <MdLocationOn />
                   {product.location}` `{" "}
                 </div>
@@ -84,7 +84,7 @@ function HomeCenter2() {
                   />
                 </div>
                 <div className="w-full font-bold flex items-center justify-between text-[16px] h-6">
-                  TSH {product.product_price}
+                  TSH {product.price}
                 </div>
               </div>
             </div>

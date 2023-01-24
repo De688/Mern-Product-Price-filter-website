@@ -14,6 +14,7 @@ const schema = Joi.object({
   name: Joi.string().min(4).required(),
   email: Joi.string().min(6).required().email(),
   password: Joi.string().required(),
+  total: Joi.number(),
 });
 
 router.post("/register", async (req, res) => {
@@ -63,6 +64,7 @@ router.post("/register", async (req, res) => {
 const loginSchema = Joi.object({
   email: Joi.string().min(6).required().email(),
   password: Joi.string().required(),
+  total: Joi.number(),
 });
 
 router.post("/login", async (req, res) => {
@@ -99,6 +101,7 @@ const updateuserschema = Joi.object({
   email: Joi.string().min(6).required().email(),
   password: Joi.string().required(),
   ProfileImage: Joi.string(),
+  total: Joi.number(),
 });
 
 router.put("/updateuserdata/:id", upload.single("image"), async (req, res) => {
