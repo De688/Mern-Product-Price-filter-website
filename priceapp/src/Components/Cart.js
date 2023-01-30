@@ -6,17 +6,15 @@ import { FaTimesCircle } from "react-icons/fa";
 import Loading from "../Loading/Loading";
 
 function Cart({ productId, price }) {
-  
-
   const { user } = useSelector((state) => state.auth);
   const { items, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.cart
   );
- 
+
   const [quantity, setQuantity] = useState(1);
   const [removeSuceessAlam, setremoveSuccessAlam] = useState(false);
   const [removeErrorAlam, setremoveErrorAlam] = useState(false);
-  const userID = user.id;
+  const userID = user?.id;
   const dispatch = useDispatch();
 
   useEffect(() => {

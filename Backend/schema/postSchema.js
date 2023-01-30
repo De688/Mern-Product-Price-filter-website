@@ -44,8 +44,10 @@ const postSchema = new mongoose.Schema({
   },
 });
 
+postSchema.index({
+  product_name: "text",
+  location: "text",
+});
+
 const postModel = mongoose.model("posts", postSchema);
 module.exports = postModel;
-
-
-

@@ -7,13 +7,13 @@ function Homethree() {
   const navigate = useNavigate();
 
   return (
-    <div className="md:hidden  w-[18%] h-[450px] overflow-hidden bg-white rounded-t-xl  flex-col justify-start items-center">
+    <div className="hidden  w-[18%] h-[450px] overflow-hidden bg-white rounded-t-xl  flex-col justify-start items-center">
       <div className="w-full h-[100px] ">
         <img src={ProfileBg} alt="myimage" className="w-full h-[100px]" />
       </div>
       <div className="w-full min-h-12 flex justify-center items-center flex-col bg-[#8d3afa46]">
         <MdAccountCircle className="text-[100px] text-[#a068e9] mt-[-50px]" />
-        <div className="flex w-full h-20 justify-around items-center">
+        <div className="flex w-full  h-20 justify-around items-center">
           <button
             type="button"
             onClick={() => navigate("/SignUp")}

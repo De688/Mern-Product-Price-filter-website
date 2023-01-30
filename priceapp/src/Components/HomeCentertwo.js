@@ -16,9 +16,9 @@ function HomeCenter2() {
 
   const [rating, setrating] = useState();
   const [options, setOptions] = useState({
-    limit: 1,
-    skip: 0,
-    sort: "product_name",
+    limit: 0,
+    skip: 3,
+    sort: "nokia",
   });
   const navigate = useNavigate();
   const params = useParams();
@@ -46,7 +46,7 @@ function HomeCenter2() {
   return (
     <div className="w-full h-[90px] bg-transparent rounded-md flex  justify-center flex-wrap mt-10">
       <div className="w-full h-[100px]  bg-white pl-8 mb-8 rounded-sm flex font-sans items-center   text-[#200346c4] text-3xl font-bold">
-        Most popular lowest priced sellers
+        Most popular
       </div>
       <div className="w-full flex gap-2 flex-wrap  justify-around text-xl bg-transparent">
         {data.map((product) => {
@@ -62,7 +62,7 @@ function HomeCenter2() {
               <img
                 src={PublicFilder + product.product_image}
                 alt="prodimage"
-                className="w-[190px]  h-[190px] flex flex-wrap border-[#546757] rounded-md "
+                className="w-[190px] h-[190px] flex flex-wrap border-[#546757] rounded-md "
               />
               <div className="w-[190px] h-full pl-2  flex flex-col justify-around ">
                 <div className="w-full flex flex-col font-bold  justify-between text-[16px] h-6">
@@ -72,7 +72,7 @@ function HomeCenter2() {
 
                 <div className="w-full flex items-center mt-2 pr-2 text-[16px] h-6">
                   <MdLocationOn />
-                  {product.location}` `{" "}
+                  {product.location}
                 </div>
                 <div className="">
                   <StarRatingComponent

@@ -75,7 +75,7 @@ function Postdetails() {
       <div className="w-[100%] sm:w-[70%] shadow-md md:w-[80%] min-h-[100px] rounded-sm flex just flex-col md:flex-row bg-white">
         <div className="flex justify-center items-center">
           <img
-            className=" object-fill rounded-sm w-[450px] h-[450px] "
+            className=" object-fill rounded-sm w-[600px] h-[600px] "
             src={PublicFilder + singleproduct?.product_image}
             alt="product image"
           />

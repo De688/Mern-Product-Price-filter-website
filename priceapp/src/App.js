@@ -1,5 +1,5 @@
 import "./App.css";
-import Home from "./Home/Home";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import SignIn from "./Auth/SignIn";
@@ -12,6 +12,7 @@ import Post from "./Components/Post";
 import Postdetails from "./Components/Postdetail";
 import Cart from "./Components/Cart";
 import AllCartData from "./Components/AllCartData";
+import MainHome from "./Home/MainHome";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route path="/" exact element={<MainHome />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/updateUserProfile" element={<ProfileUpdate />} />

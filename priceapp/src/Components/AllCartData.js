@@ -3,10 +3,12 @@ import { useEffect, useState, useCallback } from "react";
 import { updateCart, fetchCart } from "../Redux/AddToCartSlice";
 import axios from "axios";
 import { CartQuantity } from "./CartQuantity";
-import GetTotalprice from "./GetTotalprice";
+
 import DeleteCartItem from "./DeleteCartItem";
 import Loading from "../Loading/Loading";
 import { fetchProducts } from "../Redux/AllProductsSlice.js";
+import Stripe from "./Stripe";
+import Test from "./Test";
 
 function AllCartData() {
   const PublicFilder = "http://localhost:5000/images/";
@@ -155,8 +157,9 @@ function AllCartData() {
             Total Price : <span>TSH.{totalPrice}</span>
           </div>
         </div>
-
-        {/* <GetTotalprice /> */}
+      </div>
+      <div className="w-[70%] flex justify-end items-center mt-10">
+        <Stripe price={totalPrice} />
       </div>
     </>
   );

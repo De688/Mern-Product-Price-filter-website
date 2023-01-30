@@ -3,8 +3,25 @@ const router = express.Router();
 const postModel = require("../schema/postSchema.js");
 const verified = require("../verify_user/verify.js");
 
+//search query api
+
+router.get("/search", async (req, res) => {
+  const { q } = req.query;
+  const keys = ["product_name", "location"];
+  const Products = await postModel.find();
+  console.log(q);
+  //
+  const search = (data) => {
+    return data.filter((item) =>
+      keys.some((key) => item[key].toLowerCase().includes(q))
+    );
+  };
+
+  // const results = await postModel.find({ $text: { $search: searchQuery } });
+  res.json(search(Products.splice(0, 10)));
+});
+
 router.post("/addProduct", async (req, res) => {
- 
   try {
     const newProduct = new postModel({
       product_name: req.body.product_name,
@@ -41,7 +58,6 @@ router.get("/:id", async (req, res) => {
 });
 
 router.patch("/:id", async (req, res) => {
-  console.log(req.body.rating);
   try {
     const updatedProduct = await postModel.findByIdAndUpdate(
       req.params.id,

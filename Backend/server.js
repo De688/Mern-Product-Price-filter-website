@@ -9,6 +9,8 @@ const userRoute = require("./routes/userRoute.js");
 const postRoute = require("./routes/postRoute.js");
 const cartRoutes = require("./routes/addtocart.js");
 const productsRouter = require("./routes/ProductRouter.js");
+const Stripe = require("./routes/Stripe.js");
+
 
 const port = 5000;
 app = express();
@@ -63,6 +65,7 @@ app.use("/api/user", userRoute);
 app.use("/api/Product", postRoute);
 app.use("/api/products", productsRouter);
 app.use("/api/cart", cartRoutes);
+app.use("/api/", Stripe);
 
 app.listen(port, () => {
   console.log(`server running at port:${port}`);
